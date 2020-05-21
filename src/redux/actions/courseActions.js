@@ -1,6 +1,8 @@
+import { CREATE_COURSE } from "./types";
+
 export function createCourse(course) {
   //debugger;
-  return { type: "CREATE_COURSE", course };
+  return { type: CREATE_COURSE, course };
 }
 
 //1,必须有type property
