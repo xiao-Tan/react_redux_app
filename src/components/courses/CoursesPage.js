@@ -9,6 +9,7 @@ import CourseList from "./CourseList";
 class CoursesPage extends Component {
   componentDidMount() {
     const { actions, courses, authors } = this.props;
+    //just loading data once. 第一次render的时候没有数据，进入if statement, 之后就不进入了
     if (courses.length === 0) {
       actions.loadCourses().catch((error) => {
         alert("Loading courses failed" + error);
