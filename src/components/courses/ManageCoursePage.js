@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loadCourses } from "../../redux/actions/courseActions";
 import { loadAuthors } from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 
-class ManageCoursePage extends Component {
-  componentDidMount() {
-    const { courses, authors, loadCourses, loadAuthors } = this.props;
+function ManageCoursePage(props) {
+  const { courses, authors, loadCourses, loadAuthors } = props;
+  useEffect(() => {
     if (courses.length === 0) {
       loadCourses().catch((error) => {
         alert("Loading courses failed" + error);
@@ -18,11 +18,9 @@ class ManageCoursePage extends Component {
         alert("Loading authors failed" + error);
       });
     }
-  }
+  }, []); //[] empty array: just render once
 
-  render() {
-    return <h2>Manage Course</h2>;
-  }
+  return <h2>Manage Course</h2>;
 }
 
 ManageCoursePage.propTypes = {
