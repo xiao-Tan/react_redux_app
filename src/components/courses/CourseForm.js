@@ -30,8 +30,8 @@ function CourseForm(props) {
       />
       <SelectInput
         name="authorId"
-        label="author"
-        value={course.author || ""}
+        label="Author"
+        value={course.authorId || ""}
         defaultOption="Select Author"
         options={authors.map((author) => ({
           value: author.id,
@@ -42,7 +42,7 @@ function CourseForm(props) {
       />
       <TextInput
         name="category"
-        label="category"
+        label="Category"
         value={course.category}
         onChange={onChange}
         error={errors.category}

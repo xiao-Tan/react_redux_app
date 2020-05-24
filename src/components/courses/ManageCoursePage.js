@@ -30,7 +30,23 @@ function ManageCoursePage({
     }
   }, []); //[] empty array: just render once
 
-  return <CourseForm course={course} errors={errors} authors={authors} />;
+  const handleChange = (e) => {
+    const newCourse = {
+      ...course,
+      [e.target.name]:
+        name === "authorId" ? parseInt(e.target.value, 10) : e.target.value,
+    };
+    setCourse(newCourse);
+  };
+
+  return (
+    <CourseForm
+      course={course}
+      errors={errors}
+      authors={authors}
+      onChange={handleChange}
+    />
+  );
 }
 
 ManageCoursePage.propTypes = {
