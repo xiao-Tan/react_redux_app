@@ -46,8 +46,9 @@ const mapStateToProps = (state) => ({
       : state.courses.map((course) => {
           return {
             ...course,
-            authorName: state.authors.find((a) => a.id === course.authorId)
-              .name,
+            authorName: state.authors.find(
+              (a) => a.id === parseInt(course.authorId, 10)
+            ).name,
           };
         }),
   authors: state.authors, //!!!!!!state.authors ===== reducer/index.js combineReducer 里的 authors

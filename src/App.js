@@ -8,12 +8,15 @@ import CoursesPage from "./components/courses/CoursesPage";
 import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
 import ManageCoursePage from "./components/courses/ManageCoursePage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <Provider store={configureStore()}>
       <Router>
         <div className="container">
+          <ToastContainer autoClose={3000} hideProgressBar />
           <Header />
           <br></br>
           <Switch>
