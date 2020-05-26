@@ -48,7 +48,7 @@ function CourseForm(props) {
         error={errors.category}
       />
       <button type="submit" disabled={saving} className="btn btn-info">
-        {saving ? "Savind...." : "Save"}
+        {saving ? "Saving...." : "Save"}
       </button>
     </form>
   );

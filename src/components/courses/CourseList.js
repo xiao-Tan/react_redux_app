@@ -11,6 +11,7 @@ function CourseList(props) {
             <th>Title</th>
             <th>Author ID</th>
             <th>Category</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -21,6 +22,9 @@ function CourseList(props) {
               </td>
               <td>{course.authorName}</td>
               <td>{course.category}</td>
+              <td>
+                <Link to={`/course/${course.slug}`}>Edit</Link>
+              </td>
             </tr>
           ))}
         </tbody>

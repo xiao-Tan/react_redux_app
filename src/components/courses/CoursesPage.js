@@ -5,6 +5,8 @@ import * as authorActions from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import CourseList from "./CourseList";
+import Spinner from "../common/Spinner";
+import { Link } from "react-router-dom";
 
 class CoursesPage extends Component {
   componentDidMount() {
@@ -26,7 +28,20 @@ class CoursesPage extends Component {
     return (
       <div>
         <h1>Courses Page</h1>
-        <CourseList courses={this.props.courses} />
+        {this.props.loading ? (
+          <Spinner />
+        ) : (
+          <React.Fragment>
+            <Link
+              to="/course"
+              className="btn btn-lg btn-info"
+              style={{ marginBottom: 20 }}
+            >
+              Add new Course
+            </Link>
+            <CourseList courses={this.props.courses} />
+          </React.Fragment>
+        )}
       </div>
     );
   }
@@ -36,6 +51,7 @@ CoursesPage.propTypes = {
   authors: PropTypes.array.isRequired,
   courses: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 //add authors name to each course
@@ -52,6 +68,7 @@ const mapStateToProps = (state) => ({
           };
         }),
   authors: state.authors, //!!!!!!state.authors ===== reducer/index.js combineReducer 里的 authors
+  loading: state.apiCallsInProgress > 0,
 });
 
 //this determines what actions are available on props in our component.
