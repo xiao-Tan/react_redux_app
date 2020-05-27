@@ -51,6 +51,7 @@ function ManageCoursePage({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formIsValid()) return;
     setSaving(true);
     addOrUpdateCourse(course)
       .then(() => {
@@ -62,6 +63,17 @@ function ManageCoursePage({
         setErrors({ onSave: error.message });
       });
   };
+
+  function formIsValid() {
+    const _errors = {};
+    if (!course.title) _errors.title = "Title is required!";
+    if (!course.authorId) _errors.author = "Please select an Author!";
+    if (!course.category) _errors.category = "Category is required!";
+
+    setErrors(_errors);
+    //Form is valid if errors object still has no properties
+    return Object.keys(_errors).length === 0;
+  }
 
   return courses.length === 0 || authors.length === 0 ? (
     <Spinner />
