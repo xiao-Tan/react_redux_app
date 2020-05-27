@@ -25,12 +25,14 @@ class CoursesPage extends Component {
     }
   }
 
-  handleDeleteCourse = (course) => {
+  handleDeleteCourse = async (course) => {
     toast.success("Course Delete");
-    this.props.actions.deleteCouse(course).catch((error) => {
+    try {
+      await this.props.actions.deleteCouse(course);
+    } catch (error) {
       //hanlde case that api call failed
       toast.error("Delete falied " + error.message, { autoClose: false });
-    });
+    }
   };
   //Optimistic tradeoff:
   //+ better user experience when call successed
