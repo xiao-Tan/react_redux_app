@@ -9,7 +9,7 @@
     },
     {
       "id": 2,
-      "title": "React: The Big Picture 2",
+      "title": "React: The Big Picture",
       "slug": "react-big-picture",
       "authorId": 1,
       "category": "JavaScript"
@@ -69,14 +69,6 @@
       "slug": "web-components-shadow-dom",
       "authorId": 1,
       "category": "HTML5"
-    },
-    {
-      "id": 11,
-      "title": "acv",
-      "authorId": "3",
-      "category": "fdf",
-      "createdAt": 1590531222679,
-      "slug": "acv"
     }
   ],
   "authors": [

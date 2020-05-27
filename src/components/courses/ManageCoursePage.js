@@ -52,10 +52,15 @@ function ManageCoursePage({
   const handleSubmit = (e) => {
     e.preventDefault();
     setSaving(true);
-    addOrUpdateCourse(course).then(() => {
-      history.push("/courses");
-      toast.success("Course saved.");
-    });
+    addOrUpdateCourse(course)
+      .then(() => {
+        history.push("/courses");
+        toast.success("Course saved.");
+      })
+      .catch((error) => {
+        setSaving(false);
+        setErrors({ onSave: error.message });
+      });
   };
 
   return courses.length === 0 || authors.length === 0 ? (
