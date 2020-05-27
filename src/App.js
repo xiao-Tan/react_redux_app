@@ -16,7 +16,7 @@ function App() {
     <Provider store={configureStore()}>
       <Router>
         <div className="container">
-          <ToastContainer autoClose={3000} hideProgressBar />
+          <ToastContainer autoClose={2000} hideProgressBar />
           <Header />
           <br></br>
           <Switch>

@@ -7,6 +7,7 @@ import { bindActionCreators } from "redux";
 import CourseList from "./CourseList";
 import Spinner from "../common/Spinner";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 class CoursesPage extends Component {
   componentDidMount() {
@@ -24,6 +25,17 @@ class CoursesPage extends Component {
     }
   }
 
+  handleDeleteCourse = (course) => {
+    toast.success("Course Delete");
+    this.props.actions.deleteCouse(course).catch((error) => {
+      //hanlde case that api call failed
+      toast.error("Delete falied " + error.message, { autoClose: false });
+    });
+  };
+  //Optimistic tradeoff:
+  //+ better user experience when call successed
+  //- confusing user experience if call fail
+
   render() {
     return (
       <div>
@@ -39,7 +51,10 @@ class CoursesPage extends Component {
             >
               Add new Course
             </Link>
-            <CourseList courses={this.props.courses} />
+            <CourseList
+              onDelete={this.handleDeleteCourse}
+              courses={this.props.courses}
+            />
           </React.Fragment>
         )}
       </div>
@@ -77,6 +92,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: {
     loadCourses: bindActionCreators(courseActions.loadCourses, dispatch),
     loadAuthors: bindActionCreators(authorActions.loadAuthors, dispatch),
+    deleteCouse: bindActionCreators(courseActions.deleteOneCourse, dispatch),
   },
 });
 
